@@ -1,5 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "52d38bf9-338f-4656-8ff5-ee2f9fe4d722"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
@@ -31,7 +34,10 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
+              "src/styles.scss",
+             
+              "./node_modules/highlight.js/styles/a11y-dark.css"
             ],
             "scripts": []
           },
@@ -102,6 +108,16 @@
               "src/styles.scss"
             ],
             "scripts": []
+          }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "codeNote:build:production",
+            "firebaseProject": "takenote-9dff4",
+            "firebaseHostingSite": "takenote-9dff4"
           }
         }
       }

@@ -1,0 +1,51 @@
+<!-- <div style="width: fit-content;" class="my-3 mx-4 card" style="width: 100%;" >
+        <pre><code [highlight]="snip" id ="codeSnipTag{{index}}"
+        (blur)="fnupdateSnip($event)" style="height:fit-content; max-height: 400px;" 
+         [languages]="['typescript']" [lineNumbers]="true" contentEditable = "true"></code></pre>
+
+    <div class="card-body">
+        <p>this is my code snip</p>
+        <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+            <input type="checkbox" class="btn-check" id="deleteBtn{{index}}" autocomplete="off">
+            <label class="btn btn-outline-danger" (click)="isDelete=true" for="deleteBtn{{index}}">delete</label>
+
+            <input type="checkbox" class="btn-check" id="copyBtn{{index}}" autocomplete="off">
+            <label class="btn btn-outline-primary" (click)="copySnip()" for="copyBtn{{index}}">copy</label>
+          </div>
+
+          <div class="alert alert-danger my-2" *ngIf="isDelete" role="alert">
+            please <a  style = "cursor: pointer;" class="alert-link" (click)="deleteSnip($event)">confirm</a> to delete or
+            <a  style = "cursor: pointer;" class="alert-link" (click)="isDelete=false">cancel</a>
+          </div>
+   </div>
+</div> -->
+
+
+<div class="card" (mouseover)="active= true" (mouseleave)="active= false">
+  <pre><code [highlight]="snip"
+    (blur)="fnupdateSnip($event)"
+    contentEditable = "true"
+    [languages]="['typescript']" [lineNumbers]="true"></code></pre>
+    
+  <div class="action-buttons" *ngIf="active">
+    <mat-divider></mat-divider>
+    <button class="copyBtn" mat-button
+        matTooltipPosition="right"
+        matTooltip="copy to clipboard" 
+        (click)="copySnip()" title="copy">
+        <mat-icon>content_copy</mat-icon>
+    </button>
+    <button class="deleteBtn" title="delete" mat-button
+        matTooltipPosition="right" matTooltip="delete" 
+        (click)="deleteSnip($event)">
+        <mat-icon>delete</mat-icon>
+    </button>
+    <button title="pin" mat-button
+    matTooltipPosition="right" matTooltip="pin">
+      <mat-icon>push_pin</mat-icon>
+    </button>
+  </div>
+  <div class="title">
+    <div>my title</div>
+  </div>
+</div>

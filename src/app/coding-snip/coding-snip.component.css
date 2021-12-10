@@ -1,0 +1,50 @@
+.card{
+  width: 470px;
+  height: 280px;
+  background-color: white;
+  padding: 0;
+  margin: 12px;
+  border-radius: 15px;
+  overflow-x: hidden;
+  position: relative;
+}
+
+pre {
+  display: flex;
+  margin-top: 0;
+  margin-bottom: 0;
+  word-wrap: break-word;
+  height: inherit;
+  width: inherit;
+ 
+}
+  code {
+    flex: 1;
+    line-height: 1.5em;
+    font-size: 14px;
+    padding: 1em 1.2em;
+    border-radius: 15px;
+    overflow-x: hidden;
+  }
+
+  .action-buttons{
+    position: absolute;
+    top: 9px;
+    right: 0px;
+    display: flex;
+    flex-direction: column;
+  }
+  .action-buttons button:hover{
+    color:rgb(127, 127, 238);
+  }
+
+  .title{
+    position: absolute;
+    bottom: 15px;
+    left: 0px;
+    display: flex;
+    justify-content: center;
+    width: inherit;
+    font-size: 20px;
+  }
+  
