@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterContentChecked, AfterViewInit, Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import {NewSnipComponent} from '../new-snip/new-snip.component';
 import { AngularFirestore} from '@angular/fire/compat/firestore';
@@ -9,118 +9,22 @@ import { Observable } from 'rxjs';
   templateUrl: './cods.component.html',
   styleUrls: ['./cods.component.css']
 })
-export class CodsComponent implements OnInit {
-
-  codes = [
-  `0 import { Component, OnInit } from '@angular/core';
-  @Component({
-    selector: 'app-cods',
-    templateUrl: './cods.component.html',
-    styleUrls: ['./cods.component.css']
-  })
-`,
-`1 import { Component, OnInit } from '@angular/core';
-@Component({
-  selector: 'app-cods',
-  templateUrl: './cods.component.html',
-  styleUrls: ['./cods.component.css']
-})
-`,
-`2 import { Component, OnInit } from '@angular/core';
-@Component({
-  selector: 'app-cods',
-  templateUrl: './cods.component.html',
-  styleUrls: ['./cods.component.css']
-})
-`,
-`0 import { Component, OnInit } from '@angular/core';
-  @Component({
-    selector: 'app-cods',
-    templateUrl: './cods.component.html',
-    styleUrls: ['./cods.component.css']
-  })
-`,
-`1 import { Component, OnInit } from '@angular/core';
-@Component({
-  selector: 'app-cods',
-  templateUrl: './cods.component.html',
-  styleUrls: ['./cods.component.css']
-})
-
-1 import { Component, OnInit } from '@angular/core';
-@Component({
-  selector: 'app-cods',
-  templateUrl: './cods.component.html',
-  styleUrls: ['./cods.component.css']
-})
-
-1 import { Component, OnInit } from '@angular/core';
-@Component({
-  selector: 'app-cods',
-  templateUrl: './cods.component.html',
-  styleUrls: ['./cods.component.css']
-})
-
-1 import { Component, OnInit } from '@angular/core';
-@Component({
-  selector: 'app-cods',
-  templateUrl: './cods.component.html',
-  styleUrls: ['./cods.component.css']
-})
-
-1 import { Component, OnInit } from '@angular/core';
-@Component({
-  selector: 'app-cods',
-  templateUrl: './cods.component.html',
-  styleUrls: ['./cods.component.css']
-})
-
-1 import { Component, OnInit } from '@angular/core';
-@Component({
-  selector: 'app-cods',
-  templateUrl: './cods.component.html',
-  styleUrls: ['./cods.component.css']
-})
-
-1 import { Component, OnInit } from '@angular/core';
-@Component({
-  selector: 'app-cods',
-  templateUrl: './cods.component.html',
-  styleUrls: ['./cods.component.css']
-})
-
-1 import { Component, OnInit } from '@angular/core';
-@Component({
-  selector: 'app-cods',
-  templateUrl: './cods.component.html',
-  styleUrls: ['./cods.component.css']
-})
-`,
-`2 import { Component, OnInit } from '@angular/core';
-@Component({
-  selector: 'app-cods',
-  templateUrl: './cods.component.html',
-  styleUrls: ['./cods.component.css']
-})
-`,
-`2 import { Component, OnInit } from '@angular/core';
-@Component({
-  selector: 'app-cods',
-  templateUrl: './cods.component.html',
-  styleUrls: ['./cods.component.css']
-})
-`,"testing"
-];
+export class CodsComponent implements OnInit,AfterViewInit {
+  codes:Observable<any[]>;
 
 rows = 1;
 items!:Observable<any[]>;
-clnRef = this.firestore.collection('items');
+clnRef = this.firestore.collection('codes');
 
   constructor(public dialog: MatDialog,private firestore: AngularFirestore) {
-    this.items = firestore.collection('items').valueChanges({idField:"id"});
+    this.codes = firestore.collection('codes').valueChanges({idField:"id"});
    }
 
   ngOnInit(): void {
+  }
+
+  ngAfterViewInit(){
+ //   alert("View init")
   }
 
   autoScroll(event:any){
@@ -136,15 +40,22 @@ clnRef = this.firestore.collection('items');
   }
 
   onDeleteSnip(snip:any){
-     const index = this.codes.indexOf(snip);
-     console.log(index);
-     this.codes.splice(index,1);
+    this.clnRef.doc(snip.id).delete()
+    this.clnRef.doc(snip.id).delete().then(e=>{
+      alert("deleted "+snip.id);
+    })
   }
 
- onUpdateSnip(obj:any){
-   console.log(obj)
-   this.codes[obj.index] = obj.newCode;
-   console.log(this.codes)
+ onUpdateSnip(snip:any,event:any){
+  //  console.log(obj)
+  // // this.codes[obj.index] = obj.newCode;
+  //  console.log(this.codes)
+
+  this.clnRef.doc(snip.id).update({
+    code:event.newCode
+   }).then(result=>{
+     alert("updated")
+   })
  }
 
  openDialog() {

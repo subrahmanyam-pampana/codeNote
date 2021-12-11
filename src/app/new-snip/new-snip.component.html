@@ -1,13 +1,16 @@
 
 <mat-dialog-content class="mat-typography">
-  <pre><code [highlight]="snip"
-    contentEditable = "true"
-    [languages]="['typescript']" [lineNumbers]="true"></code></pre>
 
+    <input class="titleInput" [(ngModel)]="snip.title" placeholder="Enter title"/>
+     <textarea [(ngModel)]="snip.code" [highlight]="snip.code"></textarea>
+    <!-- <pre><code [highlight]="snip"
+      contentEditable = "true" id="newCodesnip"
+      [languages]="['typescript']" [lineNumbers]="true"></code></pre> -->
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancel</button>
   <button mat-button [mat-dialog-close]="true" 
+  (click)="saveNewCode()"
   cdkFocusInitial>save</button>
 </mat-dialog-actions>
 

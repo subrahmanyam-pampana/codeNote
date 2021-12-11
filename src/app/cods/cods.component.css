@@ -16,3 +16,10 @@
     bottom: 100px;
     right: 82px;
 }
+
+mat-spinner{
+    position: absolute;
+    left: 44%;
+    top: 40%;
+    display: none;
+}

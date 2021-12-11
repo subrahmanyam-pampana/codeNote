@@ -1,4 +1,5 @@
 import { Component, OnInit, Output,EventEmitter } from '@angular/core';
+import { AngularFirestore} from '@angular/fire/compat/firestore';
 
 @Component({
   selector: 'app-new-snip',
@@ -7,20 +8,20 @@ import { Component, OnInit, Output,EventEmitter } from '@angular/core';
 })
 export class NewSnipComponent implements OnInit {
   @Output() saveNewCodeEvent = new EventEmitter();
-  snip = "";
-  constructor() {}
+  clnRef = this.firestore.collection('codes');
+  snip = {
+    code:"",
+    title:""
+  };
+  constructor(private firestore: AngularFirestore) {}
   ngOnInit(): void {
   }
 
-  // saveNewCode(event:any){
-  //   if(this.newCode!=""){
-  //     console.log("save")
-  //     alert("saved!")
-  //     this.codes.unshift(this.newCode);
-  //     console.log(this.codes)
-  //     this.newCode = "";
-  //     this.rows = 1;
-  //   }
-//     event.target.style.height = "54px"
-//  }
+  saveNewCode(){
+    if(this.snip.code!=""){
+      this.clnRef.add(this.snip).then(e=>{
+        console.log("new code added")
+      })
+    }  
+ }
 }

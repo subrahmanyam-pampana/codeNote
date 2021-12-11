@@ -1,16 +1,9 @@
 
-
-   <!-- <div style="display: flex;justify-content: center">
-     <textarea id="codeTextArea"
-    class="codeText shadow p-3 bg-body rounded" cols="90" [(ngModel)] = "newCode" 
-    placeholder="Write code here....."
-     (blur)="saveNewCode($event)" (input)="autoScroll($event) " rows="{{rows}}"></textarea>
-   </div> -->
   <div class="cards">
-      <ng-container  *ngFor="let snip of codes; index as i" >
+      <ng-container  *ngFor="let snip of codes | async; index as i " >
        <app-coding-snip
-        (deleteSnipEvent) ="onDeleteSnip($event)" 
-        (updateSnip) = "onUpdateSnip($event)"
+        (deleteSnipEvent) ="onDeleteSnip(snip)" 
+        (updateSnip) = "onUpdateSnip(snip,$event)"
          [snip] = "snip" [index] = "i"></app-coding-snip>
       </ng-container>
       <div class="addNewbtn">
@@ -21,8 +14,10 @@
           <mat-icon>add</mat-icon>
         </button>
       </div>
-  
   </div>  
+
+  <mat-spinner></mat-spinner>
+
 
 
 

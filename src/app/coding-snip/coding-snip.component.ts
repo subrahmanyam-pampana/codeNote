@@ -26,8 +26,8 @@ export class CodingSnipComponent implements OnInit {
    
   }
    copySnip() {
-    navigator.clipboard.writeText(this.snip);
-    alert("Copied the text: " + this.snip);
+    navigator.clipboard.writeText(this.snip.code);
+    alert("Copied the text: " + this.snip.code);
   }
 
   deleteSnip(event:any){
@@ -37,7 +37,7 @@ export class CodingSnipComponent implements OnInit {
 
   fnupdateSnip(event:any){
     let newCode = event.target.innerText;
-    if(this.snip != newCode){
+    if(this.snip.code != newCode){
       this.updateSnip.emit({
         index:this.index,
         newCode:newCode.trim()
