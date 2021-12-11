@@ -21,11 +21,14 @@ import { NewSnipComponent } from './new-snip/new-snip.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatBadgeModule} from '@angular/material/badge';
 import { HttpClientModule } from '@angular/common/http';
 //firebase
 import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { TagsComponent } from './tags/tags.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,8 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
     CodsComponent,
     TopNavBarComponent,
     NotesComponent,
-    NewSnipComponent
+    NewSnipComponent,
+    TagsComponent
   ],
   imports: [
     BrowserModule,
@@ -52,6 +56,8 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
     MatTooltipModule,
     MatDialogModule,
     MatFormFieldModule,
+    MatChipsModule,
+    MatBadgeModule,
     HttpClientModule,
     MatProgressSpinnerModule,
     AngularFireModule.initializeApp(environment.firebase),

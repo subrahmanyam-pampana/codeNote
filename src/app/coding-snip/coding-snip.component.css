@@ -47,4 +47,21 @@ pre {
     width: inherit;
     font-size: 20px;
   }
-  
+  app-tags{
+    position: absolute;
+    top: 105px;
+    left: 11px;
+    width: 88%;
+    border-radius: inherit;
+    border-top-right-radius: 0px;
+    background: white;
+    font-size: 1rem;
+  }
+
+  app-tags .mat-form-field-flex{
+    width:412px
+  }
+
+  .mat-form-field-appearance-fill .mat-form-field-flex {
+    height: 141px;
+}

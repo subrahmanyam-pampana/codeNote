@@ -4,17 +4,23 @@ import {NewSnipComponent} from '../new-snip/new-snip.component';
 import { AngularFirestore} from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
 
+interface CodeSnip{
+  code:string,
+  tags:Array<string>,
+  title?:string
+}
+
 @Component({
   selector: 'app-cods',
   templateUrl: './cods.component.html',
   styleUrls: ['./cods.component.css']
 })
 export class CodsComponent implements OnInit,AfterViewInit {
-  codes:Observable<any[]>;
-
+codes:Observable<any[]>;
 rows = 1;
-items!:Observable<any[]>;
 clnRef = this.firestore.collection('codes');
+addNewIcon ="add";
+codeStack:CodeSnip[] = [];
 
   constructor(public dialog: MatDialog,private firestore: AngularFirestore) {
     this.codes = firestore.collection('codes').valueChanges({idField:"id"});
@@ -40,9 +46,13 @@ clnRef = this.firestore.collection('codes');
   }
 
   onDeleteSnip(snip:any){
-    this.clnRef.doc(snip.id).delete()
+    this.codeStack.push({
+      code:snip.code,
+      title: (snip.title)?snip.title:"",
+      tags:(snip.tags)?snip.tags:[]
+    });
     this.clnRef.doc(snip.id).delete().then(e=>{
-      alert("deleted "+snip.id);
+      console.log("deleted "+snip.id);
     })
   }
 
@@ -60,9 +70,21 @@ clnRef = this.firestore.collection('codes');
 
  openDialog() {
   const dialogRef = this.dialog.open(NewSnipComponent);
+  this.addNewIcon = "close"
   dialogRef.afterClosed().subscribe(result => {
     console.log(`Dialog result: ${result}`);
+    this.addNewIcon = "add"
   });
+}
+
+undo(){
+ const obj = this.codeStack.pop();
+ if(obj){
+  this.clnRef.add(obj).then(e=>{
+    console.log("undo is completed")
+  })
+ }
+
 }
 
 }

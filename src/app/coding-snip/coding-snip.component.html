@@ -17,12 +17,13 @@
         (click)="deleteSnip($event)">
         <mat-icon>delete</mat-icon>
     </button>
-    <button title="pin" mat-button
-    matTooltipPosition="right" matTooltip="pin">
-      <mat-icon>push_pin</mat-icon>
+    <button title="pin" mat-button (click)="toggleTags = !toggleTags"
+     matTooltipPosition="right" matTooltip="add tag">
+      <mat-icon>local_offer</mat-icon>
     </button>
   </div>
   <div class="title">
-    <div>{{snip.title}}</div>
+    <div contentEditable = "true" (blur)="saveTitle($event)">{{snip.title}}</div>
   </div>
+  <app-tags *ngIf="toggleTags" [tags]="snip.tags" [id]="snip.id"></app-tags>
 </div>

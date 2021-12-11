@@ -11,10 +11,19 @@
     position: relative;
 }
 
-.addNewbtn{
+.floatingActionBar{
+    display: flex;
     position: fixed;
     bottom: 100px;
     right: 82px;
+    flex-direction: column;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.floatingActionBar button{
+    margin-bottom: 12px;
 }
 
 mat-spinner{

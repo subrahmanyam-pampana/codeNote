@@ -6,12 +6,18 @@
         (updateSnip) = "onUpdateSnip(snip,$event)"
          [snip] = "snip" [index] = "i"></app-coding-snip>
       </ng-container>
-      <div class="addNewbtn">
+      <div class="floatingActionBar">
         <button mat-fab color="primary"
-        matTooltipPosition="above" matTooltip="add new snip"
+        matTooltipPosition="left" matTooltip="add new snip"
         (click)="openDialog()"
         aria-label="add new Code">
-          <mat-icon>add</mat-icon>
+          <mat-icon>{{addNewIcon}}</mat-icon>
+        </button>
+        <button mat-fab color="primary"
+        (click)="undo()"
+        matTooltipPosition="left" matTooltip="undo"
+        aria-label="undo">
+        <mat-icon  matBadge="{{(codeStack.length!=0)?codeStack.length:''}}" matBadgeColor="warn" >undo</mat-icon>
         </button>
       </div>
   </div>  
