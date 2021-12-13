@@ -1,3 +1,21 @@
+$fontSize:26px;
+.searchBar{
+    display: flex;
+    width: 76vw;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 34px;
+    input{
+        width: 244px;
+        height: 27px;
+        border-radius: 6px;
+        text-decoration: none;
+        border-color: transparent;
+        outline: none;
+        text-align:center
+    }
+}
+
 .codeText{
     /* resize: none; */
     height: 54px;

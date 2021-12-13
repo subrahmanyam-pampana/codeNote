@@ -3,7 +3,8 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { delay } from 'rxjs/operators';
 //fire base imports
-import { Observable } from 'rxjs';
+import { AngularFirestore} from '@angular/fire/compat/firestore';
+import { Observable} from 'rxjs';
 //fire base imports
 @Component({
   selector: 'app-root',
@@ -13,12 +14,15 @@ import { Observable } from 'rxjs';
 export class AppComponent {
   title = 'codeNote';
   public dataList!: Observable<any>[]; 
+  tags:Observable<any[]>;
+  searchText!:string;
 
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
 
-  constructor(private observer: BreakpointObserver) {
-
+  constructor(private observer: BreakpointObserver,
+        private firestore:AngularFirestore) {
+      this.tags = this.firestore.collection("tags").valueChanges();
   }
 
   
@@ -36,5 +40,8 @@ export class AppComponent {
         }
       });
   }
+
+ 
+
 }
 

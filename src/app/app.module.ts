@@ -29,6 +29,7 @@ import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { TagsComponent } from './tags/tags.component';
+import { SideNavBarComponent } from './side-nav-bar/side-nav-bar.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { TagsComponent } from './tags/tags.component';
     TopNavBarComponent,
     NotesComponent,
     NewSnipComponent,
-    TagsComponent
+    TagsComponent,
+    SideNavBarComponent
   ],
   imports: [
     BrowserModule,

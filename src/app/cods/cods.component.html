@@ -1,11 +1,20 @@
 
-  <div class="cards">
-      <ng-container  *ngFor="let snip of codes | async; index as i " >
-       <app-coding-snip
-        (deleteSnipEvent) ="onDeleteSnip(snip)" 
-        (updateSnip) = "onUpdateSnip(snip,$event)"
-         [snip] = "snip" [index] = "i"></app-coding-snip>
-      </ng-container>
+  <div>
+    <div class="searchBar">
+      <input type="text" (keydown)="search()"
+       placeholder="Search content...."
+       matInput class='mat-elevation-z4' [(ngModel)]="searchText">
+    </div>
+    <!-- <mat-divider></mat-divider> -->
+   <div class="cards">
+    <ng-container  *ngFor="let snip of codes | async; index as i " >
+      <app-coding-snip style="display:{{displayArray[i].display}}"
+       (deleteSnipEvent) ="onDeleteSnip(snip)" 
+       (updateSnip) = "onUpdateSnip(snip,$event)"
+        [snip] = "snip" [index] = "i"></app-coding-snip>
+     </ng-container>
+   </div>
+  
       <div class="floatingActionBar">
         <button mat-fab color="primary"
         matTooltipPosition="left" matTooltip="add new snip"

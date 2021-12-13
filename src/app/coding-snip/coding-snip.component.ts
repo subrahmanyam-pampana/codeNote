@@ -17,6 +17,7 @@ export class CodingSnipComponent implements OnInit {
   isDelete:boolean= false;
   collectionRef = this.fs.collection('codes');
   toggleTags:boolean = false;
+  @Input() display!:string;
   @Input() snip:any;
   @Input() index!:any;
   @Output() deleteSnipEvent = new EventEmitter();
@@ -30,7 +31,7 @@ export class CodingSnipComponent implements OnInit {
   }
    copySnip() {
     navigator.clipboard.writeText(this.snip.code);
-    alert("Copied the text: " + this.snip.code);
+   // alert("Copied the text: " + this.snip.code);
   }
 
   deleteSnip(event:any){
