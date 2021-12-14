@@ -14,7 +14,7 @@ import { Observable} from 'rxjs';
 export class AppComponent {
   title = 'codeNote';
   public dataList!: Observable<any>[]; 
-  tags:Observable<any[]>;
+  tags!:string[];
   searchText!:string;
 
   @ViewChild(MatSidenav)
@@ -22,7 +22,18 @@ export class AppComponent {
 
   constructor(private observer: BreakpointObserver,
         private firestore:AngularFirestore) {
-      this.tags = this.firestore.collection("tags").valueChanges();
+        this.firestore.collection("tags").
+        doc("tagsDoc").snapshotChanges().subscribe(snapShot=>{
+    
+           console.log() 
+           interface tagdatatype{
+             tagsArray:Array<string>
+           }
+           const data:tagdatatype = <tagdatatype>snapShot.payload.data();
+           console.log(data.tagsArray)
+           this.tags = data.tagsArray
+            // debugger
+        })
   }
 
   

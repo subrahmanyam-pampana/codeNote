@@ -2,8 +2,19 @@
     display: inline-flex;
     width: 100%;
     justify-content: flex-start;
+    cursor: pointer;
     margin-left: 8px;
     div{
         margin-left: 9px;
     }
+}
+
+.tag:hover{
+    background: #cad5faf2;
+    color: black;
+}
+
+.highlight{
+    background: #cad5faf2;
+    color: black;
 }

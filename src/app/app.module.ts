@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CodingSnipComponent } from './coding-snip/coding-snip.component';
@@ -24,12 +24,14 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatBadgeModule} from '@angular/material/badge';
 import { HttpClientModule } from '@angular/common/http';
+
 //firebase
 import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { TagsComponent } from './tags/tags.component';
 import { SideNavBarComponent } from './side-nav-bar/side-nav-bar.component';
+import { LoginPageComponent } from './login-page/login-page.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,8 @@ import { SideNavBarComponent } from './side-nav-bar/side-nav-bar.component';
     NotesComponent,
     NewSnipComponent,
     TagsComponent,
-    SideNavBarComponent
+    SideNavBarComponent,
+    LoginPageComponent
   ],
   imports: [
     BrowserModule,

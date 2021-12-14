@@ -1,4 +1,4 @@
-<div class="tag">
+<div class="tag" (click)="filterSnips()" [ngClass]="(active)?'highlight':''">
     <mat-icon>label</mat-icon>
-    <div>{{tag.name}}</div>
+    <div>{{tag}}</div>
 </div>

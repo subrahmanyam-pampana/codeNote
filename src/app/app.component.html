@@ -11,19 +11,20 @@
         <div>
             <a class="nav-link" routerLink="/codes">Code-snips</a>
         </div>
+        <div>
+            <a class="nav-link" routerLink="/login">Login</a>
+        </div>
     </div>
- 
-    
 </mat-toolbar>
 
 <mat-sidenav-container>
     <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
 
-        <h4 class="name">John Smith</h4>
+        <h4 class="name">Subrahmanyam</h4>
         <p class="designation">Software Engineer</p>
 
         <mat-divider></mat-divider>
-        <ng-container *ngFor="let tag of tags |async">
+        <ng-container *ngFor="let tag of tags">
             <app-side-nav-bar [tag]="tag"></app-side-nav-bar>
         </ng-container>
 

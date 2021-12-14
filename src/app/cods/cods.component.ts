@@ -3,17 +3,17 @@ import {MatDialog} from '@angular/material/dialog';
 import {NewSnipComponent} from '../new-snip/new-snip.component';
 import { AngularFirestore} from '@angular/fire/compat/firestore';
 import { Observable} from 'rxjs';
-
+import {SearchService} from '../services/search/search.service'
 
 interface CodeSnip{
   code:string,
   tags:Array<string>,
   title?:string
 }
-interface dispInterface{
-  title?:string,
-  display:string
-}
+// interface dispInterface{
+//   title?:string,
+//   display:string
+// }
 
 @Component({
   selector: 'app-cods',
@@ -28,33 +28,31 @@ addNewIcon ="add";
 codeStack:CodeSnip[] = [];
 searchText!:string;
 searchActive = false;
-displayArray:dispInterface[]=[];
+//displayArray:dispInterface[]=[];
 
-  constructor(public dialog: MatDialog,private firestore: AngularFirestore) {
+  constructor(public dialog: MatDialog,
+    public serachService: SearchService,
+    private firestore: AngularFirestore) {
     this.codes = firestore.collection('codes').valueChanges({idField:"id"});
 
-    this.codes.subscribe(snips=>{
-     // console.log(snips)
-     this.displayArray = [];
-        snips.forEach(snip=>{
-          let str = snip.title+snip.code;
-          if(snip.tags){
-             snip.tags.forEach((ele: string)=>{
-               str+=ele;
-             })
-          }
-          this.displayArray.push({
-            title:str,
-            display:"flex"
-          });
-        })
-    });
-    
-  
+
+    // this.codes.subscribe(snips=>{
+    //  // console.log(snips)
+    //  this.displayArray = [];
+    //     snips.forEach(snip=>{
+    //       let str = snip.title+snip.code;
+    //       if(snip.tags){
+    //          snip.tags.forEach((ele: string)=>{
+    //            str+=ele;
+    //          })
+    //       }
+    //       this.displayArray.push({
+    //         title:str,
+    //         display:"flex"
+    //       });
+    //     })
+    // });
    }
-
-
-
   ngOnInit(): void {
   }
 
@@ -111,21 +109,9 @@ undo(){
  }
 }
 search(){
-  if(!this.searchText){
-    this.displayArray.forEach(snip=>{
-      snip.display = "flex"
-    })
-   return;
-  }
-   this.displayArray.forEach(snip=>{
-    if(snip.title){
-      if(snip.title.indexOf(this.searchText)!= -1){
-        snip.display = "flex"
-     }else{
-      snip.display = "none"
-     }
-    }
-   })
+  this.serachService.searchContent(this.searchText);
 }
+
+
 
 }
