@@ -7,17 +7,26 @@ import { Observable} from 'rxjs';
 })
 export class CodesDataService {
   tagsCollection:Observable<any[]>;
-  // tagsArray!:any[];
+  tagsArray!:string[]
     constructor(private firestore:AngularFirestore){
     this.tagsCollection = firestore.collection("tags").valueChanges({idField:"id"})
-    // console.log("tags",this.tagsCollection);
-    
-    // console.log("tags array", this.tagsArray)
+    this.tagsCollection.subscribe(tags=>{
+      this.tagsArray = tags[0].tagsArray;
+    })
   }
 
   insertTag(tagsArray:any){
     this.firestore.collection("tags").doc("tagsDoc").update({
       tagsArray:tagsArray
+    })
+  }
+
+  deleteTag(tagName:string){
+    this.tagsArray.splice(this.tagsArray.indexOf(tagName),1)
+    this.firestore.collection("tags").doc("tagsDoc").update({
+      tagsArray:this.tagsArray
+    }).then(data=>{
+      console.log("tag removed");
     })
   }
 

@@ -3,7 +3,7 @@ import {MatChipInputEvent} from '@angular/material/chips';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import { AngularFirestore} from '@angular/fire/compat/firestore';
 import { Observable} from 'rxjs';
-import { CodesDataService} from '../services/codes-data.service';
+import {CodesDataService} from '../services/codeData/codes-data.service'
 
 @Component({
   selector: 'app-tags',
@@ -22,16 +22,7 @@ export class TagsComponent implements OnInit {
     }
     
   constructor(private firestore:AngularFirestore,private dataService:CodesDataService){
-    // this.tagsCollection = firestore.collection("tags").valueChanges({idField:"id"})
-    // console.log("tags",this.tagsCollection);
-    // this.tagsCollection.subscribe(tags=>{
-    //    this.tagsArray = [];
-    //     tags.forEach(tag=>{
-    //       console.log(tag);
-    //       this.tagsArray.push(tag.name);
-    //     })
-    // })
-
+ 
       dataService.tagsCollection.subscribe(tags=>{
         this.tagsArray = tags[0].tagsArray;
       })

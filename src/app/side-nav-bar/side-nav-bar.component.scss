@@ -7,6 +7,14 @@
     div{
         margin-left: 9px;
     }
+    .deleteIcon{
+        position: absolute;
+        right: 17px;
+    }
+
+    .deleteIcon:hover{
+       color:blue
+    }
 }
 
 .tag:hover{

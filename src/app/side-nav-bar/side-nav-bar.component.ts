@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import {SearchService} from '../services/search/search.service'
+import {CodesDataService} from '../services/codeData/codes-data.service'
 
 @Component({
   selector: 'app-side-nav-bar',
@@ -9,7 +10,9 @@ import {SearchService} from '../services/search/search.service'
 export class SideNavBarComponent implements OnInit {
 @Input() tag!:any;
 active:boolean= false;
-  constructor(private searchService: SearchService) { }
+hoverActive:boolean = false;
+  constructor(private searchService: SearchService,
+    private dataService: CodesDataService) { }
 
   ngOnInit(): void {
   }
@@ -21,5 +24,9 @@ active:boolean= false;
       this.searchService.filterTag(this.tag);
     }
     this.active = !this.active
+  }
+
+  deleteTag(){
+    this.dataService.deleteTag(this.tag)
   }
 }

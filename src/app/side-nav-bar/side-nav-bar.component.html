@@ -1,4 +1,6 @@
-<div class="tag" (click)="filterSnips()" [ngClass]="(active)?'highlight':''">
+<div class="tag" (click)="filterSnips()" 
+    [ngClass]="(active)?'highlight':''">
     <mat-icon>label</mat-icon>
     <div>{{tag}}</div>
+    <mat-icon *ngIf="active" (click)="deleteTag()" class="deleteIcon">delete</mat-icon>
 </div>
